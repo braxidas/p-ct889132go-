@@ -1,7 +1,7 @@
 package service
 
 import (
-	"ContentSystem/internal/dao"
+	"content_system/internal/dao"
 	"context"
 	"fmt"
 	"net/http"
@@ -44,9 +44,9 @@ func (c *CmsApp) Login(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "密码不正确"})
 	}
 	//3.生成sessionid存入redis
-	sessionID, err := c.generateSessionID(context.Background(),req.UserID)
-	if err != nil{
-		ctx.JSON(http.StatusInternalServerError, gin.H{"error":"系统错误"})
+	sessionID, err := c.generateSessionID(context.Background(), req.UserID)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "系统错误"})
 		return
 	}
 	//4.回包
@@ -62,23 +62,22 @@ func (c *CmsApp) Login(ctx *gin.Context) {
 	})
 }
 
-func (c *CmsApp)generateSessionID(ctx context.Context, userID string) (string, error) {
+func (c *CmsApp) generateSessionID(ctx context.Context, userID string) (string, error) {
 	sessionID := uuid.New().String()
 	//key:session_id:{user_id} val:session_id 20s
-
 
 	//1.session id生成
 	//2.session id持久化
 	sessionKey := fmt.Sprintf("session_id:%s", userID)
-	err:=c.rdb.Set(ctx, sessionKey,sessionID,time.Hour*8).Err()
-	if err != nil{
+	err := c.rdb.Set(ctx, sessionKey, sessionID, time.Hour*8).Err()
+	if err != nil {
 		fmt.Printf("rdb set error = %v \n", err)
 		return sessionID, err
 	}
 	//后续鉴权使用
-	authKey := fmt.Sprintf("auth_session_id:%s",sessionID)
+	authKey := fmt.Sprintf("auth_session_id:%s", sessionID)
 	err = c.rdb.Set(ctx, authKey, time.Now().Unix(), time.Hour*8).Err()
-	if err != nil{
+	if err != nil {
 		fmt.Sprintf("rdb set error = %v \n", err)
 		return sessionID, err
 	}

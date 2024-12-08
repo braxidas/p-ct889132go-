@@ -1,14 +1,14 @@
 package service
 
 import (
-	"ContentSystem/internal/dao"
-	"ContentSystem/internal/model"
+	"content_system/internal/dao"
+	"content_system/internal/model"
 	"encoding/json"
 	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	
+
 	goflow "github.com/s8sg/goflow/v1"
 )
 
@@ -45,12 +45,12 @@ func (c *CmsApp) ContentCreate(ctx *gin.Context) {
 	}
 
 	flowData := map[string]interface{}{
-		"content_id":req.ID,
+		"content_id": req.ID,
 	}
 	data, _ := json.Marshal(flowData)
 	if err := c.flowService.Execute("content-flow", &goflow.Request{
-		Body:data,
-	}); err != nil{
+		Body: data,
+	}); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}

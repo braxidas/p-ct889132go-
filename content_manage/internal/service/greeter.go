@@ -3,8 +3,8 @@ package service
 import (
 	"context"
 
-	v1 "ContentManage/api/helloworld/v1"
-	"ContentManage/internal/biz"
+	v1 "content_manage/api/helloworld/v1"
+	"content_manage/internal/biz"
 )
 
 // GreeterService is a greeter service.

@@ -1,7 +1,7 @@
 package service
 
 import (
-	"ContentSystem/internal/process"
+	"content_system/internal/process"
 	"context"
 
 	"github.com/redis/go-redis/v9"
@@ -12,8 +12,8 @@ import (
 )
 
 type CmsApp struct {
-	db *gorm.DB
-	rdb *redis.Client
+	db          *gorm.DB
+	rdb         *redis.Client
 	flowService *goflow.FlowService
 }
 
@@ -22,7 +22,7 @@ func NewCmsApp() *CmsApp {
 	connDB(app)
 	connRdb(app)
 	flowService(app)
-	go func(){
+	go func() {
 		process.ExceContentFlow(app.db)
 	}()
 	return app
@@ -44,20 +44,20 @@ func connDB(app *CmsApp) {
 	app.db = mysqlDB
 }
 
-func flowService(app *CmsApp){
-	app.flowService  = &goflow.FlowService{
-		RedisURL:"localhost:6379",
+func flowService(app *CmsApp) {
+	app.flowService = &goflow.FlowService{
+		RedisURL: "localhost:6379",
 	}
 }
 
-func connRdb(app *CmsApp){
+func connRdb(app *CmsApp) {
 	rdb := redis.NewClient(&redis.Options{
-		Addr: "localhost:6379",
+		Addr:     "localhost:6379",
 		Password: "",
-		DB: 0,
+		DB:       0,
 	})
 	_, err := rdb.Ping(context.Background()).Result()
-	if err != nil{
+	if err != nil {
 		panic(err)
 	}
 	app.rdb = rdb

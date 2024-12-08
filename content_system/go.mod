@@ -1,4 +1,4 @@
-module ContentSystem
+module content_system
 
 go 1.23.1
 

@@ -1,7 +1,7 @@
 package process
 
 import (
-	"ContentSystem/internal/dao"
+	"content_system/internal/dao"
 	"encoding/json"
 	"fmt"
 

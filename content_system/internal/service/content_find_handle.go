@@ -1,7 +1,7 @@
 package service
 
 import (
-	"ContentSystem/internal/dao"
+	"content_system/internal/dao"
 	"fmt"
 	"net/http"
 
@@ -23,7 +23,7 @@ type Content struct {
 type ContentFindRsp struct {
 	Message  string    `json:"message"`
 	Contents []Content `json:"contents"`
-	Total    int64       `json:"total"`
+	Total    int64     `json:"total"`
 }
 
 func (c *CmsApp) ContentFind(ctx *gin.Context) {

@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"ContentSystem/internal/api"
+	"content_system/internal/api"
 	"fmt"
 
 	"github.com/gin-gonic/gin"
@@ -13,7 +13,7 @@ func main() {
 	api.CmsRouters(r)
 
 	err := r.Run()
-	if err != nil{
+	if err != nil {
 		fmt.Printf("run error = %v", err)
 		return
 	}

@@ -2,29 +2,31 @@ syntax = "proto3";
 
 package api.operate;
 
-option go_package = "ContentManage/api/operate;operate";
+option go_package = "content_manage/api/operate;operate";
 option java_multiple_files = true;
 option java_package = "api.operate";
 
 service App {
 	rpc CreateContent (CreateContentReq) returns (CreateContentRsp);
-	// rpc UpdateApp (UpdateAppRequest) returns (UpdateAppReply);
-	// rpc DeleteApp (DeleteAppRequest) returns (DeleteAppReply);
-	// rpc GetApp (GetAppRequest) returns (GetAppReply);
-	// rpc ListApp (ListAppRequest) returns (ListAppReply);
 }
 
-message CreateContentReq {}
+message CreateContentReq {
+	Content content = 1;
+}
 message CreateContentRsp {}
 
-// message UpdateAppRequest {}
-// message UpdateAppReply {}
-
-// message DeleteAppRequest {}
-// message DeleteAppReply {}
-
-// message GetAppRequest {}
-// message GetAppReply {}
-
-// message ListAppRequest {}
-// message ListAppReply {}
+message Content{
+	int64 id = 1;
+	string title = 2;
+	string video_url = 3;
+	string author = 4;
+	string description =5;
+	string thumbnail = 6;
+	string category = 7;
+	int64 duration = 8;
+	string resolution = 9;
+	int64 filesize = 10;
+	string format = 11;
+	int32 quality = 12;
+	int32 approval_status = 13;
+}

@@ -1,7 +1,7 @@
 package service
 
 import (
-	"ContentSystem/internal/dao"
+	"content_system/internal/dao"
 	"fmt"
 	"net/http"
 

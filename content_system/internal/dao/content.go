@@ -1,7 +1,7 @@
 package dao
 
 import (
-	"ContentSystem/internal/model"
+	"content_system/internal/model"
 	"fmt"
 	"log"
 
@@ -46,8 +46,8 @@ func (c *ContentDao) Update(id int, detail model.ContentDetail) error {
 	return nil
 }
 
-func(c *ContentDao)UpdateByID(id int, column string, value interface{})error{
-	if err := c.db.Where("id = ?", id).UpdateColumn(column, value).Error; err!= nil{
+func (c *ContentDao) UpdateByID(id int, column string, value interface{}) error {
+	if err := c.db.Where("id = ?", id).UpdateColumn(column, value).Error; err != nil {
 		log.Printf("contentDao updatebyID = %v", err)
 		return err
 	}

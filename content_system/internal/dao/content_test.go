@@ -1,7 +1,7 @@
 package dao
 
 import (
-	"ContentSystem/internal/model"
+	"content_system/internal/model"
 	"testing"
 )
 

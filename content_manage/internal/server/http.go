@@ -1,9 +1,9 @@
 package server
 
 import (
-	v1 "ContentManage/api/helloworld/v1"
-	"ContentManage/internal/conf"
-	"ContentManage/internal/service"
+	v1 "content_manage/api/helloworld/v1"
+	"content_manage/internal/conf"
+	"content_manage/internal/service"
 
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/middleware/recovery"
